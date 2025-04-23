@@ -1,0 +1,87 @@
+version: "3.8"
+
+services:
+  db:
+    container_name: mysql-db
+    image: mysql:8.0.33
+    networks:
+      - app-network
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: new_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    command: --bind-address=0.0.0.0
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./devops/mysql-8.0.33/init_users.sql:/docker-entrypoint-initdb.d/01_init_users.sql
+      - ./devops/mysql-8.0.33/init_data_structure.sql:/docker-entrypoint-initdb.d/02_init_data_structure.sql
+      - ./devops/mysql-8.0.33/init_data.sql:/docker-entrypoint-initdb.d/03_init_data.sql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  adminer:
+    container_name: adminer-ui
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+
+  backend:
+    container_name: backend-api
+    image: node:23.9.0
+    working_dir: /app
+    command: >
+      sh -c "npm install && npm run dev"
+    build: ./backend
+    networks:
+      - app-network
+    environment:
+      DB_HOST: db
+      DB_USER: user
+      DB_PASSWORD: password
+      DB_NAME: new_db
+      NODE_ENV: development
+      DATABASE_URL: mysql://user:password@db:3306/new_db
+      PORT: 3100
+    ports:
+      - "3100:3100"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  frontend:
+    container_name: frontend-template
+    image: node:23.9.0
+    working_dir: /app
+    command: >
+      sh -c "npm ci && npm run start"
+    build: ./frontend
+    networks:
+      - app-network
+    environment:            
+      - PORT=3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+volumes:
+  db-data:
+
+networks:
+  app-network:

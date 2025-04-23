@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "baseUrl": ".",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false,
+    "paths": {
+      "*": ["node_modules/*"],
+      "@adapters/*": ["src/adapters/*"],
+      "@inbound/*": ["src/adapters/inbound/*"],
+      "@controllers/*": ["src/adapters/inbound/http/controllers/*"],
+      "@ports/*": ["src/adapters/inbound/ports/*"],
+      "@repositories/*": ["src/adapters/outbound/prisma/*"],
+      "@application/*": ["src/application/*"],
+      "@services/*": ["src/application/services/*"],
+      "@validators/*": ["src/application/validators/*"],
+      "@domain/*": ["src/domain/*"],
+      "@entities": ["src/domain/entities*"],
+      "@entities/*": ["src/domain/entities/*"],
+      "@infra/*": ["src/infra/*"],
+      "@prisma/*": ["src/infra/database/prisma/*"],
+      "@middlewares/*": ["src/infra/http/middlewares/*"],
+      "@main/*": ["src/main/*"],
+      "@factories/*": ["src/main/factories/*"],
+      "@routes/*": ["src/main/routes/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

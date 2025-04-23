@@ -1,0 +1,30 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Brand {
+  id      String    @id @db.Char(36)
+  name    String    @db.VarChar(255)
+  product Product[]
+
+  @@unique([name])
+}
+
+model Product {
+  id          String  @id @db.Char(36)
+  name        String  @db.VarChar(255)
+  price       Decimal @db.Decimal(10, 2)
+  description String? @db.Text
+  image       String? @db.LongText
+  brandId     String  @db.Char(36)
+  brand        Brand   @relation(fields: [brandId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_brand")
+
+  @@unique([name, brandId], map: "uq_product_name_brand")
+  @@index([brandId], map: "fk_brand")
+}
