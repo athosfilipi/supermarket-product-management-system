@@ -1,0 +1,249 @@
+type: collection.insomnia.rest/5.0
+name: AFYA
+meta:
+  id: wrk_d12ecebc0d2b4ae9857a948002d4caca
+  created: 1745382050613
+  modified: 1745382050613
+collection:
+  - name: Products
+    meta:
+      id: fld_bafc9b4210af458d94eca197521094df
+      created: 1745382093946
+      modified: 1745382100161
+      sortKey: -1745382093946
+    children:
+      - url: localhost:3100/api/v1/products
+        name: Products
+        meta:
+          id: req_e9c7ac581e454ad7aea1c46f1a9916d0
+          created: 1745382053247
+          modified: 1745412981465
+          isPrivate: false
+          sortKey: -1745382097263
+        method: GET
+        parameters:
+          - id: pair_c205cdd9115e47fc92af2a846ec1965c
+            name: search
+            disabled: true
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:3100/api/v1/products
+        name: Products
+        meta:
+          id: req_1cd45803fd9c478380868b46abf2c531
+          created: 1745382107536
+          modified: 1745407443965
+          isPrivate: false
+          sortKey: -1744806228498
+        method: POST
+        body:
+          mimeType: application/json
+          text: >-2
+              {
+                "id": "4e29c4a5-e7c2-4b6e-bfd9-fb8f415f531b",
+                "name": "VitaEssence Vitamin Supplement",
+                "price": 29.99,
+                "description": "Suplemento vitamínico VitaEssence com ingredientes naturais para aumento de energia.",
+                "image": "https://example.com/image_vitaessence_vitamins.jpg",
+                "brandId": "a143a941-eb1b-4040-8634-e2de8ec47fd0"
+              }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3100/api/v1/products
+        name: Products with search
+        meta:
+          id: req_ffd2eec9486d497eb34339e1cc232328
+          created: 1745382342475
+          modified: 1745401757273
+          isPrivate: false
+          sortKey: -1745094162880.5
+        method: GET
+        parameters:
+          - id: pair_c205cdd9115e47fc92af2a846ec1965c
+            name: search
+            value: brand a
+            disabled: true
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:3100/api/v1/products
+        name: Products with limit
+        meta:
+          id: req_b2d4a5cc3e834d2bbf2a2d02547c2015
+          created: 1745382359166
+          modified: 1745382795980
+          isPrivate: false
+          sortKey: -1744950195689.25
+        method: GET
+        parameters:
+          - id: pair_c205cdd9115e47fc92af2a846ec1965c
+            name: limit
+            value: "3"
+            disabled: false
+          - id: pair_e21c52712e9d4ffabfc2882ef62d7974
+            name: page
+            value: "1"
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Brands
+    meta:
+      id: fld_3096c30adfbb46858898d89163be518b
+      created: 1745382219875
+      modified: 1745382229971
+      sortKey: -1745382093896
+    children:
+      - url: localhost:3100/api/v1/Brands
+        name: Brands
+        meta:
+          id: req_205124428bba4072b11816e344121038
+          created: 1745382219876
+          modified: 1745407383557
+          isPrivate: false
+          sortKey: -1745382097263
+        method: GET
+        parameters:
+          - id: pair_a2594d7f8f914c0999c46a0cb65d70b2
+            name: search
+            value: 33d49478-433e-4161-9d2d-e916ad613729
+            disabled: true
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:3100/api/v1/brands
+        name: Brands
+        meta:
+          id: req_fd0737fcc7074650b2fee268c7685eb7
+          created: 1745382219878
+          modified: 1745406620876
+          isPrivate: false
+          sortKey: -1744806228498
+        method: POST
+        body:
+          mimeType: application/json
+          text: '  {"name": "NeoSound" }'
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:3100/api/v1/brands
+        name: Brands with search
+        meta:
+          id: req_6e33a655c9ed41478bef1cb12d6213e7
+          created: 1745382630082
+          modified: 1745407204865
+          isPrivate: false
+          sortKey: -1745094162880.5
+        method: GET
+        parameters:
+          - id: pair_c205cdd9115e47fc92af2a846ec1965c
+            name: search
+            value: ac8cf4c0-7f78-4ae1-902a-8e6ca973ed27
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:3100/api/v1/brands
+        name: Brands with Limit
+        meta:
+          id: req_999fef5c22b74065999b7e3141278abd
+          created: 1745382720913
+          modified: 1745382766864
+          isPrivate: false
+          sortKey: -1745022179284.875
+        method: GET
+        parameters:
+          - id: pair_c205cdd9115e47fc92af2a846ec1965c
+            name: limit
+            value: "2"
+            disabled: false
+          - id: pair_c88fcc559e814cf28165c3c51fb320e0
+            name: page
+            value: "2"
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_0f89def887d53d99cb7e9189a6b42f95fb11ac4d
+    created: 1745382050618
+    modified: 1745382050618
+environments:
+  name: Base Environment
+  meta:
+    id: env_0f89def887d53d99cb7e9189a6b42f95fb11ac4d
+    created: 1745382050616
+    modified: 1745382050616
+    isPrivate: false
