@@ -3,8 +3,8 @@ import { Middleware } from "routing-controllers";
 import { ExpressErrorMiddlewareInterface } from "routing-controllers";
 import { Service } from "typedi";
 
-@Service()
 @Middleware({ type: "before" })
+@Service()
 export class NotFoundErrorMiddleware
   implements ExpressErrorMiddlewareInterface
 {

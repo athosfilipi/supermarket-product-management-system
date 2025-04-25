@@ -7,9 +7,11 @@ import {
   QueryParams,
   Req,
   Post,
+  Body,
 } from "routing-controllers";
 import { Inject } from "typedi";
 import { Service } from "typedi";
+import { CreateBrandDto } from "@application/validators/Brand/create-brand.dto";
 
 export interface SearchRequestParams {
   search?: string;
@@ -56,10 +58,9 @@ export class BrandController {
   }
 
   @Post("/")
-  async createBrand(@Req() req: Request) {
+  async createBrand(@Req() req: Request, @Body() body: CreateBrandDto) {
     try {
-      const data = (req as any).validatedData || req.body;
-      const brand: Brand = await this.brandService.create(data);
+      const brand: Brand = await this.brandService.create(body);
       return brand;
     } catch (err: any) {
       if (err.code === "P2002") {

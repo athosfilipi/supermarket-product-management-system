@@ -4,6 +4,7 @@ import {
   Get,
   Req,
   QueryParams,
+  Body,
 } from "routing-controllers";
 import { Inject } from "typedi";
 import { Request } from "express";
@@ -13,7 +14,7 @@ import ProductService from "@application/services/product.service";
 import { Service } from "typedi";
 import { SearchRequestParams } from "@infra/http/types/types";
 import { PaginatedResult } from "@domain/interfaces/pagination.interface";
-
+import { CreateProductDto } from "@application/validators/product/create-product.dto";
 @Service()
 @JsonController("/products")
 export class ProductController {
@@ -23,10 +24,9 @@ export class ProductController {
   ) {}
 
   @Post("/")
-  async createProduct(@Req() req: Request) {
+  async createProduct(@Req() req: Request, @Body() body: CreateProductDto) {
     try {
-      const data = (req as any).validatedData || req.body;
-      const product: Product = await this.productService.create(data);
+      const product: Product = await this.productService.create(body);
       return product;
     } catch (err: any) {
       if (err.code === "P2002") {

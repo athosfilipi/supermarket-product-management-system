@@ -6,8 +6,8 @@ import { Request, Response, NextFunction } from "express";
 
 import { Service } from "typedi";
 
-@Middleware({ type: "after" })
 @Service()
+@Middleware({ type: "after" })
 export class ErrorHandlerMiddleware implements ExpressErrorMiddlewareInterface {
   error(error: any, req: Request, res: Response, next: NextFunction): void {
     if (res.headersSent) {
@@ -22,7 +22,7 @@ export class ErrorHandlerMiddleware implements ExpressErrorMiddlewareInterface {
       success: false,
       error: {
         message,
-        ...(process.env.NODE_ENV !== "production" && { stack: error.stack }),
+        // ...(process.env.NODE_ENV !== "production" && { stack: error.stack }),
       },
     });
   }
