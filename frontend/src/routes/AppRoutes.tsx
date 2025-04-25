@@ -8,7 +8,7 @@ export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
+      {/* <Route path="/about" element={<About />} /> */}
       <Route path="/product/create" element={<ProductCreatePage />} />
       <Route path="/product/list" element={<ProductListPage />} />
       {/* <Route path="/product/edit/:id" element={<ProductEditPage />} /> */}

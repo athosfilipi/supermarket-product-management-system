@@ -11,10 +11,7 @@ export default function App() {
         <Toolbar>
           <Button color="inherit" component={Link} to="/">
             Home
-          </Button>
-          <Button color="inherit" component={Link} to="/about">
-            Sobre
-          </Button>
+          </Button>          
           <Button color="inherit" component={Link} to="/product/create">
             Cadastrar Produto
           </Button>
