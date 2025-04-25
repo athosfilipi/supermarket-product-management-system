@@ -15,7 +15,7 @@ const ImageCell = ({ src }: { src?: string }) => (
     {src && (
       <CategoryImage
         className="category-image"
-        src={"/assets/images/nuts.png"}
+        src={src || "/assets/images/nuts.png"}
         alt="Produto"
       />
     )}

@@ -2,8 +2,8 @@ import { Middleware, ExpressErrorMiddlewareInterface } from "routing-controllers
 import { Request, Response, NextFunction } from "express";
 import { Service } from "typedi";
 
-@Middleware({ type: "after" })
 @Service()
+@Middleware({ type: "after" })
 export class InternalServerErrorMiddleware implements ExpressErrorMiddlewareInterface {
   error(error: any, req: Request, res: Response, next: NextFunction): void {
     if (res.headersSent) {

@@ -19,7 +19,7 @@ export class PrismaService {
     } catch (error) {
       console.error("‼► Erro ao conectar ao banco de dados");
       if (error instanceof PrismaClientInitializationError) {
-        console.error("Tentando reconectar...");
+        console.error("Tentando reconectar...",error);
         this.startConnectionCheck();
       }
     }
